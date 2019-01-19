@@ -13,35 +13,30 @@ with open("staff_names.csv", "r") as csvfile:
 NamesEdited = []
 print ("\n--Begin data conversion--")
 
-#CommaFlag checks if name contains ',' and branches to correct IF for the appropriate name format
-#Loop through data, replace space with ., remove new lines, add domain and store in a list
+#CommaFlag checks if name contains ',' and branches to correct IF for the
+#  appropriate name format
+#Loop through data, replace space with ., remove new lines, add domain and store
 for names in NamesRaw:
-    CommaFlag = names.find(',')
-    if (CommaFlag == -1):                     #no comma found
-        namesLower = names.lower()
-        namesNoSpace = namesLower.replace(' ','.')
-        correctEmail = namesNoSpace.replace('\n', '@sample.isp;')
-        NamesEdited.append(correctEmail)
-    else:                                     #comma found, do more complex replace process
+    if (names.find(',') == -1):                     #no comma found
+        namesCleaned = names.lower()
+        namesCleaned = namesCleaned.replace(' ','.')
+        namesCleaned = namesCleaned.replace('\n', '@sample.isp')
+        NamesEdited.append(namesCleaned)
+    else:                          #comma found, do more complex replace process
         namesClean = names.replace('\n', '')
-        namesLower = namesClean.lower()
-        stringSplit = namesLower.find(',')
-        first = namesLower[stringSplit+2:]
-        second = namesLower[0:stringSplit]
-        namesNoSpace = first+"."+second
-        namesNoApost = namesNoSpace.replace('"','')
-        correctEmail = namesNoApost+'@sample.isp;'
-        NamesEdited.append(correctEmail)
-        
+        namesClean = namesClean.strip(' ')
+        namesClean = namesClean.lower()
+        stringSplit = namesClean.find(',')
+        firstname = namesClean[stringSplit+2:]
+        surname = namesClean[0:stringSplit]
+        namesClean = firstname+"."+surname
+        namesClean = namesClean.replace('"','')
+        namesClean = namesClean+'@sample.isp'
+        NamesEdited.append(namesClean)
+
 #display edited data in IDLE without list indicators for easy copying
 print (" ")
-for newnames in NamesEdited:
-    print (newnames)
+for FormattedEmails in NamesEdited:
+    print (FormattedEmails+';')
 print (" ")
 print ("-- end of list--")
-
-
-
-
-
-
