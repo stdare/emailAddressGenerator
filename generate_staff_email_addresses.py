@@ -24,7 +24,7 @@ for names in NamesRaw:
         NamesEdited.append(namesCleaned)
     else:                          #comma found, do more complex replace process
         namesClean = names.replace('\n', '')
-        namesClean = namesClean.strip(' ')
+#        namesClean = namesClean.strip()        #this line not working (don't know why)
         namesClean = namesClean.lower()
         stringSplit = namesClean.find(',')
         firstname = namesClean[stringSplit+2:]
