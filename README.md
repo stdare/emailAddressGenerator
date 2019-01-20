@@ -6,4 +6,4 @@ This script pulls a list of user names and coverts them into firstname.surname@i
 The original data may exist in 'firstname surname' OR 'surname, firstname' format.  
 The script will recognise the data format and convert each line of the .csv accordingly.
 
-There is no provision (yet) to manage errors/complexities in name format (such as missing space in the comma format or surnames with a space).  I may do this in subsequent versions - for a challenge more than anything.  split() doesn't seem to work as expected for some reason.
+There is no provision (yet) to manage errors/complexities in name format (such as missing space in the comma format or surnames with a space).  I may do this in subsequent versions - for a challenge more than anything.  The split() method doesn't seem to work as expected for some reason.
