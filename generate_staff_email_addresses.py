@@ -1,5 +1,5 @@
 """
-This script will open a .txt file containing staff names,
+This script will open a .csv file containing staff names,
 remove spaces and replace with '.' then generate the full email address,
 sending it to a .txt file which then opens in Notepad.
 """
