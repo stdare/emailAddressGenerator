@@ -1,2 +1,2 @@
-firstname.surname@myisp.com.au; 
+firstname.surnames@myisp.com.au; 
 firstname.surname@myisp.com.au; 

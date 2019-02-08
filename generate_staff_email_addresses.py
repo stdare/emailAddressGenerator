@@ -20,10 +20,11 @@ for names in NamesRaw:
         namesCleaned = names.lower()
         namesCleaned = namesCleaned.replace(' ','.')
         namesCleaned = namesCleaned.replace('\n', '@myisp.com.au; ')
-        NamesEdited.append(namesCleaned)
+        if (namesCleaned not in NamesEdited):      #checks for duplicate entries
+            NamesEdited.append(namesCleaned)
     else:                          #comma found, do more complex replace process
         namesClean = names.replace('\n', '')
-#        namesClean = namesClean.strip()    #this line not working(don't know why)
+#        namesClean = namesClean.strip()   #this line not working(don't know why)
         namesClean = namesClean.lower()
         stringSplit = namesClean.find(',')
         firstname = namesClean[stringSplit+2:]
@@ -31,7 +32,8 @@ for names in NamesRaw:
         namesClean = firstname+"."+surname
         namesClean = namesClean.replace('"','')
         namesClean = namesClean+'@myisp.com.au; '
-        NamesEdited.append(namesClean)
+        if (namesClean not in NamesEdited):        #checks for duplicate entries
+            NamesEdited.append(namesClean)
 
 #write the results to a new .txt file
 with open("generated_emails.txt", "w") as f:
