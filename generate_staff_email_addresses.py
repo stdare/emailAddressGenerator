@@ -1,11 +1,10 @@
 """
-This script will open a .csv file containing staff names,
+This script will open a .txt file containing staff names,
 remove spaces and replace with '.' then generate the full email address,
-sending it to a .txt file which then opens in Notepad.
+sending it to Py Shell for copying to an email.
 """
 
 #read contents of .csv file with just staff names without email addresses.
-
 with open("staff_names.csv", "r") as csvfile:
     NamesRaw = csvfile.readlines()
 
@@ -16,23 +15,24 @@ NamesEdited = []
 #   for the appropriate name format.
 #Loop through data, replace space with ., remove new lines, add domain and store.
 for names in NamesRaw:
-    if (names.find(',') == -1):                     #no comma found
+    if (names.find(',') == -1):          #no comma found, do simple clean process
         namesCleaned = names.lower()
+        namesCleaned = namesCleaned.strip()
         namesCleaned = namesCleaned.replace(' ','.')
-        namesCleaned = namesCleaned.replace('\n', '@myisp.com.au; ')
-        if (namesCleaned not in NamesEdited):      #checks for duplicate entries
+        namesCleaned = namesCleaned+'@isp.com.au; '
+        if (namesCleaned not in NamesEdited):       #check for duplicate entries
             NamesEdited.append(namesCleaned)
-    else:                          #comma found, do more complex replace process
+    else:                            #comma found, do more complex clean process
         namesClean = names.replace('\n', '')
-#        namesClean = namesClean.strip()   #this line not working(don't know why)
         namesClean = namesClean.lower()
         stringSplit = namesClean.find(',')
         firstname = namesClean[stringSplit+2:]
         surname = namesClean[0:stringSplit]
         namesClean = firstname+"."+surname
         namesClean = namesClean.replace('"','')
-        namesClean = namesClean+'@myisp.com.au; '
-        if (namesClean not in NamesEdited):        #checks for duplicate entries
+        namesClean = namesClean.replace(' ','')
+        namesClean = namesClean+'@isp.com.au; '
+        if (namesClean not in NamesEdited):         #check for duplicate entries
             NamesEdited.append(namesClean)
 
 #write the results to a new .txt file
@@ -40,6 +40,6 @@ with open("generated_emails.txt", "w") as f:
         for row in NamesEdited:
             print(row, file=f)
 
-#open the text file in Notepad
+#open the .txt file in Notepad to copy output
 import webbrowser
 webbrowser.open("generated_emails.txt")
