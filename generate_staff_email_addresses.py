@@ -1,7 +1,7 @@
 """
-This script will open a .txt file containing staff names,
+This script will read a .csv file containing staff names,
 remove spaces and replace with '.' then generate the full email address,
-sending it to Py Shell for copying to an email.
+saving it in a .txt file, which then opens for copying to an email.
 """
 
 #read contents of .csv file with just staff names without email addresses.
